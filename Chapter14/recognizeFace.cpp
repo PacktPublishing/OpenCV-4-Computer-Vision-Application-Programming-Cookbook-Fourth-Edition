@@ -74,7 +74,7 @@ int main()
 	cv::imshow("LBP image", lbpImage);
 
 	cv::Ptr<cv::face::FaceRecognizer> recognizer =
-		cv::face::createLBPHFaceRecognizer(1,      // radius of LBP pattern 
+		cv::face::LBPHFaceRecognizer::create(1,      // radius of LBP pattern 
 			                               8,      // the number of neighboring pixels to consider
 			                               8, 8,   // grid size
 			                               200.);  // minimum distance to nearest neighbor
