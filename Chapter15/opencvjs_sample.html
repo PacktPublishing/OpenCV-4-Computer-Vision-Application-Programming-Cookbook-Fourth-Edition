@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <style>
+	#container {min-height:300px;}
+	#canvasOutput, #imageSrc{
+		background:#ccc;
+		min-width:300px;
+		min-height:300px;
+		display:block;
+		float:left;	
+		margin-left:20px;
+	}
+    </style>
+    <title>OpenCV Computer vision on Web. Packt Publishing.</title>
+  </head>
+  <body>
+	<div id="status" class="alert alert-primary" role="alert">Loading OpenCV...</div>
+	<div id="container">        
+		<img id="imageSrc" alt="No Image" class="small" src="img/gray.png">
+        	<canvas id="canvasOutput" class="small" height="300px"></canvas>
+	</div>        
+	<input type="file" id="fileInput" name="file" accept="image/*">
+        
+
+    <!-- Optional JavaScript -->
+    <script src="data/common.js"></script>
+    <!-- OPENCV -->
+    <script async="" src="data/opencv.js" type="text/javascript" onload="onOpenCvReady();" onerror="onOpenCvError();"></script>
+
+    <script type="text/javascript">
+        let imgElement = document.getElementById('imageSrc');
+        let inputElement = document.getElementById('fileInput');
+        
+        inputElement.addEventListener('change', (e) => {
+            imgElement.src = URL.createObjectURL(e.target.files[0]);
+        }, false);
+        
+        imgElement.onload = function() {
+            let mat = cv.imread(imgElement);
+            cv.cvtColor(mat, mat, cv.COLOR_BGR2GRAY);
+            cv.imshow('canvasOutput', mat);
+            mat.delete();
+        };
+        
+        function onOpenCvReady() { // eslint-disable-line no-unused-vars
+            document.getElementById('status').innerHTML = '<b>OpenCV.js is ready</b>.' +
+                'You can upload an image.<br>' +
+                'The <b>imageSrc</b> is a &lt;img&gt; element used as cv.Mat input. ' +
+                'The <b>canvasOutput</b> is a &lt;canvas&gt; element used as cv.Mat output.';
+        }
+        
+        function onOpenCvError() { // eslint-disable-line no-unused-vars
+            let element = document.getElementById('status');
+            element.setAttribute('class', 'err');
+            element.innerHTML = 'Failed to load opencv.js';
+        }
+        </script>
+  </body>
+</html>
