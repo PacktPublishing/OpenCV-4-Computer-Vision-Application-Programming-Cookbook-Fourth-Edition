@@ -48,7 +48,7 @@ int main()
 	cv::Mat descriptors1, descriptors2;
 
 	// Construction of the SIFT feature detector 
-	cv::Ptr<cv::Feature2D> ptrFeature2D = cv::xfeatures2d::SIFT::create(74);
+	cv::Ptr<cv::Feature2D> ptrFeature2D = cv::xfeatures2d::SIFT::create(164);
 
 	// Detection of the SURF features
 	ptrFeature2D->detectAndCompute(image1, cv::noArray(), keypoints1, descriptors1);
@@ -82,10 +82,10 @@ int main()
 	selMatches.push_back(matches[2]);  
 	selMatches.push_back(matches[5]);
 	selMatches.push_back(matches[16]);
-	selMatches.push_back(matches[19]);
+	selMatches.push_back(matches[29]);
 	selMatches.push_back(matches[14]);
 	selMatches.push_back(matches[34]);
-	selMatches.push_back(matches[29]);
+	selMatches.push_back(matches[20]);
 
 	// Draw the selected matches
 	cv::Mat imageMatches;

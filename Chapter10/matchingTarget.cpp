@@ -29,7 +29,7 @@ Copyright (C) 2016 Robert Laganiere, www.laganiere.name
 int main()
 {
 	// Read input images
-	cv::Mat target= cv::imread("cookbook1.jpg",0);
+	cv::Mat target= cv::imread("cookbook1.bmp",0);
 	cv::Mat image= cv::imread("objects.jpg",0);
 	if (!target.data || !image.data)
 		return 0; 
